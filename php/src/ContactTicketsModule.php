@@ -286,7 +286,7 @@ final class ContactTicketsModule extends AbstractModule implements NotificationS
             $to,
             '',
             "Neue Kontaktanfrage #{$id} von {$name}",
-            '<p>Neue Kontaktanfrage über das Formular.</p><p><strong>#' . $id . '</strong> — '
+            '<p>Neue Kontaktanfrage über das Formular.</p><p><strong>#' . $id . '</strong>: '
                 . htmlspecialchars($name) . ' &lt;' . htmlspecialchars($email) . '&gt;</p>',
             null,
             $email, // Reply-To the submitter

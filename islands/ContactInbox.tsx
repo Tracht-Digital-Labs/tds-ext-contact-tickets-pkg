@@ -135,7 +135,7 @@ export default function ContactInbox() {
     if (res === null) {
       // apiFetch rejects when the request never reaches the API; uncaught, the
       // click did nothing and said nothing.
-      toast.danger("Status konnte nicht geändert werden — die API ist nicht erreichbar.");
+      toast.danger("Status konnte nicht geändert werden, die API ist nicht erreichbar.");
       return;
     }
     if (!res.ok) {
@@ -356,7 +356,7 @@ function MessageView({ id, onBack }: { id: number; onBack: () => void }) {
     setBusy(false);
     if (res === null) {
       // The typed reply stays in the box for another attempt.
-      toast.danger("Antwort konnte nicht gesendet werden — die API ist nicht erreichbar.");
+      toast.danger("Antwort konnte nicht gesendet werden, die API ist nicht erreichbar.");
       return;
     }
     if (res.ok) {

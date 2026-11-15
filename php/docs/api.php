@@ -17,13 +17,13 @@ return [
         'pattern' => '/contact',
         'tag' => 'Öffentlich',
         'summary' => 'Kontaktformular absenden',
-        'description' => 'Die einzige öffentliche Route dieses Moduls — die Marketing-Seite '
+        'description' => 'Die einzige öffentliche Route dieses Moduls, die Marketing-Seite '
             . 'sendet hier ohne Anmeldung hin. Drei Schutzschichten: ein Honeypot-Feld '
             . '`website` (gefüllt ⇒ Bot, wird **stillschweigend mit 202 bestätigt**, '
             . 'damit der Bot nichts lernt), eine Mindestlänge-Validierung und ein '
             . 'Rate-Limit von 5 Einsendungen je IP in 10 Minuten. Die IP wird nur '
             . 'gesalzen gehasht gespeichert, nie im Klartext. Der Admin wird per '
-            . 'E-Mail benachrichtigt (best effort — ein nicht konfigurierter Mailer '
+            . 'E-Mail benachrichtigt (best effort, ein nicht konfigurierter Mailer '
             . 'lässt die Anfrage trotzdem gelingen).',
         'auth' => 'public',
         'params' => [
@@ -32,11 +32,11 @@ return [
             ['in' => 'body', 'name' => 'message', 'type' => 'string', 'required' => true, 'description' => 'Mindestens 20 Zeichen, auf 10.000 gekürzt.'],
             ['in' => 'body', 'name' => 'company', 'type' => 'string', 'description' => 'Optional, auf 200 Zeichen gekürzt.'],
             ['in' => 'body', 'name' => 'subject', 'type' => 'string', 'description' => 'Optional, auf 200 Zeichen gekürzt.'],
-            ['in' => 'body', 'name' => 'website', 'type' => 'string', 'description' => 'Honeypot — muss leer bleiben. Im Formular versteckt.'],
+            ['in' => 'body', 'name' => 'website', 'type' => 'string', 'description' => 'Honeypot, muss leer bleiben. Im Formular versteckt.'],
         ],
         'responses' => [
             ['status' => 201, 'description' => '`{id}` der gespeicherten Anfrage.'],
-            ['status' => 202, 'description' => '`{ok: true}` — Honeypot ausgelöst. Nichts wurde gespeichert.'],
+            ['status' => 202, 'description' => '`{ok: true}`: Honeypot ausgelöst. Nichts wurde gespeichert.'],
             ['status' => 422, 'description' => 'Name, E-Mail oder Nachricht genügen den Mindestanforderungen nicht.'],
             ['status' => 429, 'description' => 'Rate-Limit überschritten (5 pro IP je 10 Minuten).'],
         ],
@@ -63,14 +63,14 @@ return [
             . 'Wert fällt auf die Vorgabe zurück statt 422 zu erzeugen: die Werte kommen '
             . 'aus Chips und Selects, ein falscher heißt also „veraltetes Lesezeichen", '
             . 'nicht „fehlerhafter Aufrufer". Die wirksamen Filter werden in `query` '
-            . 'zurückgegeben — ohne das sieht „keine Treffer für diesen Filter" genauso '
+            . 'zurückgegeben, ohne das sieht „keine Treffer für diesen Filter" genauso '
             . 'aus wie „der Server hat meinen Filter ignoriert".',
         'permission' => 'contact:read',
         'params' => [
             ['in' => 'query', 'name' => 'status', 'type' => 'new|handled|spam', 'description' => 'Auf einen Status einschränken.'],
             ['in' => 'query', 'name' => 'q', 'type' => 'string', 'description' => 'Freitextsuche, auf 120 Zeichen gekürzt.'],
             ['in' => 'query', 'name' => 'sort', 'type' => 'string', 'description' => 'Sortierschlüssel aus `ContactRepository::sortKeys()`. Vorgabe `created_at`.'],
-            ['in' => 'query', 'name' => 'dir', 'type' => 'asc|desc', 'description' => 'Vorgabe `desc` — alles außer `asc` bedeutet absteigend.'],
+            ['in' => 'query', 'name' => 'dir', 'type' => 'asc|desc', 'description' => 'Vorgabe `desc`, alles außer `asc` bedeutet absteigend.'],
             ['in' => 'query', 'name' => 'limit', 'type' => 'int', 'description' => 'Vorgabe 200. Werte ≤ 0 werden auf 200 zurückgesetzt.'],
         ],
         'responses' => [
@@ -104,7 +104,7 @@ return [
         'summary' => 'Per E-Mail auf eine Kontaktanfrage antworten',
         'description' => 'Versendet die Antwort über den Core-Mailer an die Adresse des '
             . 'Absenders und protokolliert sie an der Anfrage. **Eine Antwort setzt den '
-            . 'Status von `new` auf `handled`.** Ohne konfigurierten Mailer 503 — die '
+            . 'Status von `new` auf `handled`.** Ohne konfigurierten Mailer 503, die '
             . 'Antwort wird dann auch nicht protokolliert, damit der Verlauf keine '
             . 'nie versendete Nachricht behauptet.',
         'permission' => 'contact:write',
@@ -113,12 +113,12 @@ return [
             ['in' => 'body', 'name' => 'body', 'type' => 'string', 'required' => true, 'description' => 'Mindestens 2 Zeichen, auf 10.000 gekürzt.'],
         ],
         'responses' => [
-            ['status' => 201, 'description' => '`{ok: true}` — versendet und protokolliert.'],
+            ['status' => 201, 'description' => '`{ok: true}`, versendet und protokolliert.'],
             ['status' => 401, 'description' => 'Keine Sitzung.'],
             ['status' => 403, 'description' => 'Kein `contact:write`.'],
             ['status' => 404, 'description' => 'Unbekannte Id.'],
             ['status' => 422, 'description' => 'Antworttext fehlt oder ist zu kurz.'],
-            ['status' => 503, 'description' => 'Kein SMTP konfiguriert — nichts versendet, nichts protokolliert.'],
+            ['status' => 503, 'description' => 'Kein SMTP konfiguriert, nichts versendet, nichts protokolliert.'],
         ],
     ],
     [
