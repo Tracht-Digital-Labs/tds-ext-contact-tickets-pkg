@@ -1,4 +1,4 @@
-import { defineExtension } from "@tracht-digital-solutions/tds-frontend-contract";
+import { defineExtension } from "@tracht-digital-labs/tds-frontend-contract";
 
 /**
  * Contact-tickets extension — the public **contact-form inbox**. The marketing
@@ -33,7 +33,7 @@ export default defineExtension({
     {
       id: "contact-new",
       title: "Neue Anfragen",
-      island: "@tracht-digital-solutions/tds-ext-contact-tickets/widgets/Widget.astro",
+      island: "@tracht-digital-labs/tds-ext-contact-tickets/widgets/Widget.astro",
       size: "sm",
       permission: "contact:read",
       dataEndpoint: "/contact/summary",
@@ -47,7 +47,7 @@ export default defineExtension({
   routes: [
     {
       pattern: "/kontakt",
-      entrypoint: "@tracht-digital-solutions/tds-ext-contact-tickets/pages/Index.astro",
+      entrypoint: "@tracht-digital-labs/tds-ext-contact-tickets/pages/Index.astro",
       permission: "contact:read",
     },
   ],

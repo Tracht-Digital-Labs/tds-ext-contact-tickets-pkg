@@ -1,10 +1,10 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { primeRuntimeConfig } from "@tracht-digital-solutions/tds-shared/api";
+import { primeRuntimeConfig } from "@tracht-digital-labs/tds-shared/api";
 import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ContactInbox from "./ContactInbox";
-import { TOAST_EVENT } from "@tracht-digital-solutions/tds-shared/toast";
+import { TOAST_EVENT } from "@tracht-digital-labs/tds-shared/toast";
 
 /**
  * The contact-form inbox: triage (new → handled/spam) and the detail view with

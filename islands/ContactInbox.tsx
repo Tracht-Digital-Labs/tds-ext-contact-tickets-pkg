@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
-import { Alert, Spinner, toast } from "@tracht-digital-solutions/tds-shared/components";
+import { Alert, Spinner, toast } from "@tracht-digital-labs/tds-shared/components";
 import {
   AnimatedItem,
   AnimatedList,
   Collapse,
   Presence,
   TabIndicator,
-} from "@tracht-digital-solutions/tds-shared/motion/react";
-import { apiFetch, sendJson } from "@tracht-digital-solutions/tds-shared/api";
+} from "@tracht-digital-labs/tds-shared/motion/react";
+import { apiFetch, sendJson } from "@tracht-digital-labs/tds-shared/api";
 import {
   GROUP_LABELS,
   groupMessages,
